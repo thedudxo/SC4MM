@@ -1,0 +1,70 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+
+    <ApplicationIcon />
+
+    <Win32Resource />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.4" />
+    <PackageReference Include="NUnit" Version="3.13.1" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
+    <PackageReference Include="coverlet.collector" Version="3.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PluginExtractor\SC4MM.ZipFileIntake.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="TestFiles\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="TestFiles\Mattb325_MeridianCondos_MN\Mattb325 Meridian Condos %28x3%29-0x6534284a-0x3ec1db6a-0x7e54d80c.SC4Desc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestFiles\Mattb325_MeridianCondos_MN\Mattb325 Meridian Condos%28prop%29-0x6534284a-0x3ec1db6a-0x9e54d7e2.SC4Desc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestFiles\Mattb325_MeridianCondos_MN\Mattb325 Meridian Condos-0x6534284a-0x3ec1db6a-0x1e18232f.SC4Desc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestFiles\Mattb325_MeridianCondos_MN\Mattb325 Meridian Condos1%28prop%29-0x6534284a-0x3ec1db6a-0x1e54d7b3.SC4Desc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestFiles\Mattb325_MeridianCondos_MN\Mattb325 Meridian Condos1-0x6534284a-0x3ec1db6a-0x9e54d6ee.SC4Desc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestFiles\Mattb325_MeridianCondos_MN\Mattb325_MeridianCondos-0x5ad0e817_0x302e0c3e_0x30000.SC4Model">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestFiles\Mattb325_MeridianCondos_MN\Mattb325_MeridianCondos1-0x5ad0e817_0xf06abe72_0x30000.SC4Model">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestFiles\Mattb325_MeridianCondos_MN\Mattb325_MeridianCondos_README.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestFiles\Mattb325_MeridianCondos_MN\R%24%244_5x5_Mattb325 Meridian Condos %28x3%29_cddb9b03.SC4Lot">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestFiles\Mattb325_MeridianCondos_MN\R%24%246_2x2_Mattb325 Meridian Condos1_4e54d711.SC4Lot">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestFiles\Mattb325_MeridianCondos_MN\R%24%246_2x2_Mattb325 Meridian Condos_de18235a.SC4Lot">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestFiles\Mattb325_MeridianCondos_MN\R%24%246_3x2_Mattb325 Meridian Condos1_6ddb8fb4.SC4Lot">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestFiles\Mattb325_MeridianCondos_MN\R%24%246_3x2_Mattb325 Meridian Condos_ed9edb04.SC4Lot">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
