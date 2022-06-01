@@ -4,38 +4,35 @@ using System;
 
 namespace UnitTests
 {
-    public class Tests
+    public class SC4FileTests
     {
-        const string testDirectory = "..\\..\\..\\TestFiles\\";
-
-        [SetUp]
-        public void Setup()
-        {
-        }
-
         [Test]
-        [TestCase("SomeFile3982598.SC4Desc", SC4File.Extension.SC4Desc)]
-        [TestCase("AnotherFile222443.SC4Lot", SC4File.Extension.SC4Lot)]
-        [TestCase("AnotherFile222443.SC4Model", SC4File.Extension.SC4Model)]
-        [TestCase("AnotherFile222443.bat", SC4File.Extension.bat)]
-        [TestCase("AnotherFile222443.txt", SC4File.Extension.txt)]
-        [TestCase("AnotherFile222443.html", SC4File.Extension.html)]
-        [TestCase("AnotherFile222443.jpg", SC4File.Extension.jpg)]
-        [TestCase("AnotherFile222443.gif", SC4File.Extension.gif)]
-        //aditionalExtensions
-        [TestCase("AnotherFile222443.jpg.txt", SC4File.Extension.txt)]
-        [TestCase("AnotherFile222443.psd.SC4Desc", SC4File.Extension.SC4Desc)]
-        [TestCase("txt.AnotherFile222443.gif", SC4File.Extension.gif)]
-        [TestCase("Another.txt.File222443.html", SC4File.Extension.html)]
-        [TestCase("Another.gifFile222443.SC4Lot", SC4File.Extension.SC4Lot)]
-        public void GetFileExtension(string filePath, SC4File.Extension expected)
+        #region Cases
+        [TestCase("SomeFile3982598.SC4Desc", SC4FileType.SC4Desc)]
+        [TestCase("AnotherFile222443.SC4Lot", SC4FileType.SC4Lot)]
+        [TestCase("AnotherFile222443.SC4Model", SC4FileType.SC4Model)]
+        [TestCase("AnotherFile222443.bat", SC4FileType.bat)]
+        //readmes
+        [TestCase("AnotherFile222443.txt", SC4FileType.txt)]
+        [TestCase("AnotherFile222443.html", SC4FileType.html)]
+        [TestCase("AnotherFile222443.jpg", SC4FileType.jpg)]
+        [TestCase("AnotherFile222443.gif", SC4FileType.gif)]
+        //EdgeCases
+        [TestCase("AnotherFile222443.jpg.txt", SC4FileType.txt)]
+        [TestCase("AnotherFile222443.psd.SC4Desc", SC4FileType.SC4Desc)]
+        [TestCase("txt.AnotherFile222443.gif", SC4FileType.gif)]
+        [TestCase("Another.txt.File222443.html", SC4FileType.html)]
+        [TestCase("Another.gifFile222443.SC4Lot", SC4FileType.SC4Lot)]
+        #endregion
+        public void GetFileExtension(string filePath, SC4FileType expected)
         {
             SC4File file = new(filePath);
 
-            Assert.That(file.GetExtension() == expected);
+            Assert.That(file.Type == expected);
         }
 
         [Test]
+        #region Cases
         [TestCase("somefile.mp4")]
         [TestCase("SomeNonsense.k28dLol")]
         [TestCase("somefile.mp4")]
@@ -43,21 +40,11 @@ namespace UnitTests
         [TestCase("somefile.HTML")]
         [TestCase("somefile.Html")]
         [TestCase(".SC4Lot.somefile")]
+        #endregion
         public void GetFileExtension_Exceptions(string filePath)
         {
-            void makeNew()
-            {
-                try
-                {
-                    new SC4File(filePath);
-                }
-
-                catch (ArgumentException)
-                {
-                    throw;
-                }
-            }
-            Assert.That(makeNew, Throws.ArgumentException);
+            Assert.Throws<ArgumentException>(() => new SC4File(filePath));
         }
     }
+
 }
