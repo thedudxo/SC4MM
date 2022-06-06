@@ -2,7 +2,7 @@
 
 namespace SC4MM.ZipFileIntake
 {
-    public class PluginExtractor
+    public class ModExtractor
     {
         static void Main(string[] args) { }
 
