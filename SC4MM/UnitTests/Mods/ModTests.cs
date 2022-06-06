@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using SC4MM;
-using NUnit.Framework;
-using System.IO;
+﻿using System.IO;
 
 namespace SC4MM.Tests
 {
@@ -31,7 +27,7 @@ namespace SC4MM.Tests
     {
 
         Mod mod;
-        ModFiles files;
+        Dictionary<string, bool> toggleByFilename;
         ModFolders folders;
         MockFileMover fileMover;
 
@@ -39,16 +35,16 @@ namespace SC4MM.Tests
         public void Setup()
         {
             fileMover = new();
-            files = new();
+            toggleByFilename = new();
             folders = new("mod/enabled", "mod/disabled", "mod/readme");
 
-            mod = new(folders, files, fileMover);
+            mod = new(folders, toggleByFilename, fileMover);
         }
 
         private void AddTwoEnabledModFiles()
         {
-            files.Enabled.AddLast("mod1");
-            files.Enabled.AddLast("mod2");
+            toggleByFilename.Add("mod1", true);
+            toggleByFilename.Add("mod2", true);
         }
 
         [Test]
@@ -93,8 +89,8 @@ namespace SC4MM.Tests
         public void DisabledMod_Enable_DoesNotMoveDisabledFilesToEnabledPath()
         {
             AddTwoEnabledModFiles();
-            files.Disabled.AddLast("mod3");
-            files.Disabled.AddLast("mod4");
+            toggleByFilename.Add("mod3", false);
+            toggleByFilename.Add("mod4", false);
             mod.Disable();
             fileMover.commands.Clear();
 
@@ -161,9 +157,9 @@ namespace SC4MM.Tests
         [Test]
         public void EnabledModDisabledFile_DisableFile_DoesNotMoveFile()
         {
-            var modFile = files.Disabled.AddLast("mod1");
+            toggleByFilename.Add("mod1", false);
 
-            mod.DisableFile(modFile);
+            mod.DisableFile("mod1");
 
             Assert.That(fileMover.commands, Is.Empty);
         }
@@ -171,9 +167,9 @@ namespace SC4MM.Tests
         [Test]
         public void EnabledModEnabledFile_EnableFile_DoesNotMoveFile()
         {
-            var modFile = files.Enabled.AddLast("mod1");
+            toggleByFilename.Add("mod1", true);
 
-            mod.EnableFile(modFile);
+            mod.EnableFile("mod1");
 
             Assert.That(fileMover.commands, Is.Empty);
         }
@@ -181,11 +177,11 @@ namespace SC4MM.Tests
         [Test]
         public void DisabledModEnabledFile_EnableFile_DoesNotMoveFile()
         {
-            var modFile = files.Enabled.AddLast("mod1");
+            toggleByFilename.Add("mod1", true);
             mod.Disable();
             fileMover.commands.Clear();
             
-            mod.EnableFile(modFile);
+            mod.EnableFile("mod1");
 
             Assert.That(fileMover.commands, Is.Empty);
         }
@@ -193,11 +189,11 @@ namespace SC4MM.Tests
         [Test]
         public void DisabledModDisabledFile_DisableFile_DoesNotMoveFile()
         {
-            var modFile = files.Disabled.AddLast("mod1");
+            toggleByFilename.Add("mod1", false);
             mod.Disable();
             fileMover.commands.Clear();
 
-            mod.DisableFile(modFile);
+            mod.DisableFile("mod1");
 
             Assert.That(fileMover.commands, Is.Empty);
         }
@@ -205,11 +201,11 @@ namespace SC4MM.Tests
         [Test]
         public void DisabledModDisabledFile_EnableFile_DoesNotMoveFile()
         {
-            var modFile = files.Disabled.AddLast("mod1");
+            toggleByFilename.Add("mod1", false);
             mod.Disable();
             fileMover.commands.Clear();
 
-            mod.EnableFile(modFile);
+            mod.EnableFile("mod1");
 
             Assert.That(fileMover.commands, Is.Empty);
         }
@@ -217,9 +213,9 @@ namespace SC4MM.Tests
         [Test]
         public void EnabledModDisabledFile_EnableFile_MovesFileToEnabledPath()
         {
-            var modFile = files.Disabled.AddLast("mod1");
+            toggleByFilename.Add("mod1", false);
 
-            mod.EnableFile(modFile);
+            mod.EnableFile("mod1");
 
             CollectionAssert.Contains(fileMover.commands, new MockFileMover.Command
             {
@@ -231,11 +227,11 @@ namespace SC4MM.Tests
         [Test]
         public void DisabledFile_EnableFileTwice_DoesNotMoveFileTwice()
         {
-            var modFile = files.Disabled.AddLast("mod1");
-            modFile = mod.EnableFile(modFile);
+            toggleByFilename.Add("mod1", false);
+            mod.EnableFile("mod1");
             fileMover.commands.Clear();
 
-            mod.EnableFile(modFile);
+            mod.EnableFile("mod1");
 
             Assert.That(fileMover.commands, Is.Empty);
         }
@@ -243,11 +239,11 @@ namespace SC4MM.Tests
         [Test]
         public void EnabledFile_DisableFileTwice_DoesNotMoveFileTwice()
         {
-            var modFile = files.Enabled.AddLast("mod1");
-            modFile = mod.DisableFile(modFile);
+            toggleByFilename.Add("mod1", true);
+            mod.DisableFile("mod1");
             fileMover.commands.Clear();
 
-            mod.DisableFile(modFile);
+            mod.DisableFile("mod1");
 
             Assert.That(fileMover.commands, Is.Empty);
         }
@@ -255,9 +251,9 @@ namespace SC4MM.Tests
         [Test]
         public void EnabledFile_DisableFile_MovesFileToEnabledPath()
         {
-            var modFile = files.Enabled.AddLast("mod1");
+            toggleByFilename.Add("mod1", true);
 
-            mod.DisableFile(modFile);
+            mod.DisableFile("mod1");
 
             CollectionAssert.Contains(fileMover.commands, new MockFileMover.Command
             {

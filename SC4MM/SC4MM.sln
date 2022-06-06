@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31410.357
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32414.318
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SC4MM.ZipFileIntake.Tests", "UnitTests\SC4MM.ZipFileIntake.Tests.csproj", "{72B75139-20C7-4819-948E-3EC971D3D9FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SC4MM.Tests", "UnitTests\SC4MM.Tests.csproj", "{72B75139-20C7-4819-948E-3EC971D3D9FD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SC4MM.ZipFileIntake", "PluginExtractor\SC4MM.ZipFileIntake.csproj", "{FD93C49A-190D-4480-B183-889B4BE2DEF3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SC4MM", "PluginExtractor\SC4MM.csproj", "{FD93C49A-190D-4480-B183-889B4BE2DEF3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

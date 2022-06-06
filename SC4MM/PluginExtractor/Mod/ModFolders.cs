@@ -12,6 +12,5 @@
             Disabled = disabled;
             Readme = readme;
         }
-
     }
 }
