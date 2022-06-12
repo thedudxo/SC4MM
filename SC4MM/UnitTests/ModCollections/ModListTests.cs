@@ -183,5 +183,16 @@
 
             Assert.Throws<ArgumentException>(act);
         }
+
+        [Test]
+        public void ModlistContainsSublist_AddModlistToSublist_ThrowsArgumentException()
+        {
+            mainlist.AddSublist(sublist);
+            Assume.That(mainlist.Contains(sublist));
+
+            void act() => sublist.AddSublist(mainlist);
+
+            Assert.Throws<ArgumentException>(act);
+        }
     }
 }

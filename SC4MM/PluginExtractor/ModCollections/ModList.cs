@@ -10,6 +10,9 @@
             if (Contains(sublist))
                 throw new ArgumentException("Sublist was allready in the collection", nameof(sublist));
 
+            if (sublist.Contains(this))
+                throw new ArgumentException("The list you are trying to add to this list, contains this list.");
+
             SubLists.Add(sublist);
             Mods.UnionWith(sublist.Mods);
         }
