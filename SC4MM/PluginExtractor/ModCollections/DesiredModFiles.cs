@@ -1,6 +1,6 @@
 ﻿namespace SC4MM
 {
-    public class DesiredModFiles
+    public class DesiredModFiles : IDesiredModFiles
     {
         readonly IMod mod;
         readonly List<string> includedFiles;
@@ -15,7 +15,7 @@
 
         public void Apply()
         {
-           foreach (string file in includedFiles)
+            foreach (string file in includedFiles)
                 mod.EnableFile(file);
 
             foreach (string file in excludedFiles)

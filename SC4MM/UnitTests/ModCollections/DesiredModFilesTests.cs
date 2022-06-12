@@ -1,6 +1,5 @@
-﻿namespace SC4MM.Tests
+﻿namespace SC4MM.Tests.ModCollections
 {
-
     internal class DesiredModFilesTests
     {
         DesiredModFiles desiredModFiles;

@@ -3,11 +3,17 @@
     class MockMod : IMod
     {
         public bool Enabled { get; private set; }
-        Dictionary<string, bool> toggleByFilename;
+
+        readonly Dictionary<string, bool> toggleByFilename;
 
         public MockMod(Dictionary<string, bool> toggleByFilename)
         {
             this.toggleByFilename = toggleByFilename;
+        }
+
+        public MockMod()
+        {
+            toggleByFilename = new();
         }
 
         public void Disable()

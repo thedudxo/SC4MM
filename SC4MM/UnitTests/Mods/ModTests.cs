@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace SC4MM.Tests
+namespace SC4MM.Tests.Mods
 {
     class MockFileMover : IFileMover
     {
