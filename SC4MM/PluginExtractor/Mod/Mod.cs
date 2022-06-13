@@ -4,8 +4,8 @@ namespace SC4MM
 {
     public class Mod : IMod
     {
-        readonly ModFolders folders;
         readonly IFileMover fileMover;
+        readonly ModFolders folders;
         public Dictionary<string, bool> ToggleByFileName { get; } = new();
         public List<string> Readme { get; init; } = new();
 

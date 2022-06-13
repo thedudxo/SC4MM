@@ -3,7 +3,6 @@
     public interface IMod
     {
         bool Enabled { get; }
-
         void Disable();
         void DisableFile(string filename);
         void Enable();

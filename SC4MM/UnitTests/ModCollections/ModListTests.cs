@@ -194,5 +194,49 @@
 
             Assert.Throws<ArgumentException>(act);
         }
+
+        [Test]
+        public void RemoveSublistWithMod_Apply_DoesNotApplyMod()
+        {
+            sublist.Add(sublistItem);
+            mainlist.AddSublist(sublist);
+            Assume.That(sublist.Contains(sublistItem));
+            Assume.That(mainlist.Contains(sublist));
+            mainlist.RemoveSublist(sublist);
+            Assume.That(mainlist.Contains(sublist) == false);
+            Assume.That(sublistItem.Applied == false);
+
+            mainlist.Apply();
+
+            Assert.That(sublistItem.Applied == false);
+        }
+
+        [Test]
+        public void RemoveModFromSublist_ApplyMainlist_DoesNotApplyMod()
+        {
+            sublist.Add(sublistItem);
+            mainlist.AddSublist(sublist);
+            Assume.That(sublist.Contains(sublistItem));
+            Assume.That(mainlist.Contains(sublist));
+            Assume.That(sublistItem.Applied == false);
+            sublist.Remove(sublistItem);
+
+            mainlist.Apply();
+
+            Assert.That(sublistItem.Applied == false);
+        }
+
+        [Test]
+        public void SublistMod_RemoveFromMainlist_ThrowsArgumentException()
+        {
+            sublist.Add(sublistItem);
+            mainlist.AddSublist(sublist);
+            Assume.That(sublist.Contains(sublistItem));
+            Assume.That(mainlist.Contains(sublist));
+
+            void act() => mainlist.Remove(sublistItem);
+
+            Assert.Throws<ArgumentException>(act);
+        }
     }
 }

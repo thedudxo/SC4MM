@@ -2,10 +2,13 @@
 {
     public interface IModList
     {
-        public HashSet<IModAndDesiredFiles> Mods { get; }
+        HashSet<IModAndDesiredFiles> Mods { get; }
+        HashSet<IModList> Parents { get;}
         bool Contains(IModAndDesiredFiles mod);
-        public bool Contains(IModList item);
-
+        bool Contains(IModList item);
+        void Remove(IModAndDesiredFiles mod);
+        void Add(IModAndDesiredFiles mod);
         void Apply();
+        void ChildModRemoved(IModAndDesiredFiles mod);
     }
 }
