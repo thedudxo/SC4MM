@@ -1,0 +1,31 @@
+﻿<Application x:Class="SC4MM_UI.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:SC4MM_UI"
+             StartupUri="Views/MainWindow.xaml">
+    <Application.Resources>
+
+        <DataTemplate x:Key="Mod">
+            <Label Content="{Binding Name}"/>
+        </DataTemplate>
+
+        <DataTemplate x:Key="ModFile">
+            <StackPanel Orientation="Horizontal">
+                <CheckBox IsChecked="{Binding Path = Value, Mode=OneWay}"/>
+                <Label Content="{Binding Key}" />
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="ModDetails">
+            <StackPanel Orientation="Vertical">
+                
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Name:"/>
+                    <Label Content="{Binding Name}"/>
+                </StackPanel>
+                
+            </StackPanel>
+        </DataTemplate>
+        
+    </Application.Resources>
+</Application>

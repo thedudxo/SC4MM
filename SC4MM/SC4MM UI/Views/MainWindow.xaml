@@ -1,0 +1,25 @@
+﻿<Window x:Class="SC4MM_UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SC4MM_UI"
+        xmlns:views="clr-namespace:SC4MM_UI.Views"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+
+    <StackPanel Orientation="Horizontal" Margin="10">
+        
+        <StackPanel Orientation="Vertical" Margin="5">
+            <Label Content="All Mods" />
+            <ListBox x:Name="ModsList"
+                ItemTemplate="{StaticResource Mod}" SelectionChanged="ModsList_SelectionChanged"
+                />
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical" Margin="5">
+            <views:ModDetails x:Name="ModDetailsView"/>
+        </StackPanel>
+        
+    </StackPanel>
+</Window>

@@ -5,13 +5,13 @@ namespace SC4MM
     public class Mod : IMod
     {
         readonly IFileMover fileMover;
-        readonly ModFolders folders;
+        public readonly ModFolders folders;
         public Dictionary<string, bool> ToggleByFileName { get; } = new();
         public List<string> Readme { get; init; } = new();
+        public string Name { get; set; }
 
-        public Mod(ModFolders folders, Dictionary<string, bool> ToggleByFileName, IFileMover fileMover)
+        public Mod(ModFolders folders, IFileMover fileMover)
         {
-            this.ToggleByFileName = ToggleByFileName;
             this.folders = folders;
             this.fileMover = fileMover;
         }

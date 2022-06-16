@@ -27,7 +27,7 @@ namespace SC4MM.Tests.Mods
     {
 
         Mod mod;
-        Dictionary<string, bool> toggleByFilename;
+        Dictionary<string, bool> toggleByFilename => mod.ToggleByFileName;
         ModFolders folders;
         MockFileMover fileMover;
 
@@ -35,10 +35,9 @@ namespace SC4MM.Tests.Mods
         public void Setup()
         {
             fileMover = new();
-            toggleByFilename = new();
             folders = new("mod/enabled", "mod/disabled", "mod/readme");
 
-            mod = new(folders, toggleByFilename, fileMover);
+            mod = new(folders, fileMover);
         }
 
         private void AddTwoEnabledModFiles()
