@@ -15,17 +15,6 @@
                 <Label Content="{Binding Key}" />
             </StackPanel>
         </DataTemplate>
-
-        <DataTemplate x:Key="ModDetails">
-            <StackPanel Orientation="Vertical">
-                
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Name:"/>
-                    <Label Content="{Binding Name}"/>
-                </StackPanel>
-                
-            </StackPanel>
-        </DataTemplate>
         
     </Application.Resources>
 </Application>

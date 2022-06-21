@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="SC4MM_UI.Views.ModList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SC4MM_UI.Views"
+             xmlns:vm="clr-namespace:SC4MM_UI.Viewmodels"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             >
+    <UserControl.DataContext>
+        <vm:ModList/>
+    </UserControl.DataContext>
+
+    <UserControl.Resources>
+        <DataTemplate x:Key="ModItem">
+            <Label Content="{Binding Mod.Name}"/>
+        </DataTemplate>
+    </UserControl.Resources>
+    
+    <StackPanel Background="Snow" Orientation="Vertical">
+        
+        <Label Content="ListName" FontSize="15"/>
+        
+        <ListBox x:Name="Mods" ItemsSource="{Binding Mods}" ItemTemplate="{StaticResource ResourceKey=ModItem}"/>
+        
+        <ListBox x:Name="SublistsBox" ItemsSource="{Binding SubLists}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <local:ModList/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        
+    </StackPanel>
+</UserControl>

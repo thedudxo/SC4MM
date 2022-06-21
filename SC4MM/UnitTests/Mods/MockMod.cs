@@ -4,16 +4,22 @@
     {
         public bool Enabled { get; private set; }
 
-        readonly Dictionary<string, bool> toggleByFilename;
+        public ModFolders Folders => throw new NotImplementedException();
+
+        public List<string> Readmes => throw new NotImplementedException();
+
+        public string Name => throw new NotImplementedException();
+
+        public Dictionary<string, bool> ToggleByFileName { get; }
 
         public MockMod(Dictionary<string, bool> toggleByFilename)
         {
-            this.toggleByFilename = toggleByFilename;
+            this.ToggleByFileName = toggleByFilename;
         }
 
         public MockMod()
         {
-            toggleByFilename = new();
+            ToggleByFileName = new();
         }
 
         public void Disable()
@@ -23,7 +29,7 @@
 
         public void DisableFile(string filename)
         {
-            toggleByFilename[filename] = false;
+            ToggleByFileName[filename] = false;
         }
 
         public void Enable()
@@ -33,7 +39,7 @@
 
         public void EnableFile(string filename)
         {
-            toggleByFilename[filename] = true;
+            ToggleByFileName[filename] = true;
         }
     }
 }

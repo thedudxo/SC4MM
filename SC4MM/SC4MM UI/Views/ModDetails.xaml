@@ -38,7 +38,7 @@
             <Label Grid.Row="4" Grid.Column="0" Content="Readme Path:"/>
             <Label Grid.Row="4" Grid.Column="1" Content="{Binding Folders.Readme}"/>
 
-            <ListBox Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding ReadmeFiles}"/>
+            <ListBox Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding Readmes}"/>
         </Grid>
 
     </StackPanel>

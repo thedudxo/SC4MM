@@ -1,21 +1,54 @@
 ﻿namespace SC4MM_UI.Viewmodels
 {
-    public class Mod
+    public class Mod : IMod
     {
-        public readonly SC4MM.Mod mod;
+        public IMod? Model { get; set; }
 
-        public string Name { get; set; }
-        public ModFolders Folders { get; set; }
-        public Dictionary<string, bool> ToggleByFileName { get; set; }
-        public List<string> ReadmeFiles { get; set; }
+        public string Name { get; set; } = "";
+        public ModFolders Folders { get; set; } = new("", "", "");
+        public Dictionary<string, bool> ToggleByFileName { get; set; } = new();
+        public List<string> Readmes { get; set; } = new();
 
-        public Mod(SC4MM.Mod mod)
+        public Mod(IMod other)
         {
-            this.mod = mod;
-            Name = mod.Name;
-            Folders = mod.folders;
-            ToggleByFileName = mod.ToggleByFileName;
-            ReadmeFiles = mod.Readme;
+            Name = other.Name;
+            Folders = other.Folders;
+            ToggleByFileName = other.ToggleByFileName;
+            Readmes = other.Readmes;
+            Model = other;
+        }
+
+        public bool Enabled
+        {
+            get
+            {
+                _ = Model ?? throw new InvalidOperationException("No underlying model set"); 
+                return Model.Enabled;
+            }
+        }
+
+        public void Disable()
+        {
+            _ = Model ?? throw new InvalidOperationException("No underlying model set");
+            Model.Disable();
+        }
+
+        public void DisableFile(string filename)
+        {
+            _ = Model ?? throw new InvalidOperationException("No underlying model set");
+            Model.DisableFile(filename);
+        }
+
+        public void Enable()
+        {
+            _ = Model ?? throw new InvalidOperationException("No underlying model set");
+            Model.Enable();
+        }
+
+        public void EnableFile(string filename)
+        {
+            _ = Model ?? throw new InvalidOperationException("No underlying model set");
+            Model.EnableFile(filename);
         }
     }
 }

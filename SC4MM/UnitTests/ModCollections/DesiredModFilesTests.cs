@@ -3,8 +3,8 @@
     internal class DesiredModFilesTests
     {
         DesiredModFiles desiredModFiles;
-        List<string> includedFiles;
-        List<string> excludedFiles;
+        List<string> IncludedFiles => desiredModFiles.IncludedFiles;
+        List<string> ExcludedFiles => desiredModFiles.ExcludedFiles;
         
         MockMod mod;
         Dictionary<string, bool> toggleByFilename;
@@ -15,10 +15,7 @@
             toggleByFilename = new Dictionary<string, bool>();
             mod = new(toggleByFilename);
 
-
-            includedFiles = new List<string>();
-            excludedFiles = new List<string>();
-            desiredModFiles = new(mod, includedFiles, excludedFiles);
+            desiredModFiles = new(mod);
         }
 
         void ParamsAction<t>(Action<t> action, t required, params t[] extras)
@@ -40,12 +37,12 @@
 
         void AddIncludedFiles(string file, params string[] files)
         {
-            ParamsAction(f => includedFiles.Add(f), file, files);
+            ParamsAction(f => IncludedFiles.Add(f), file, files);
         }
 
         void AddExcludedFiles(string file, params string[] files)
         {
-            ParamsAction(f => excludedFiles.Add(f), file, files);
+            ParamsAction(f => ExcludedFiles.Add(f), file, files);
         }
 
         [Test]

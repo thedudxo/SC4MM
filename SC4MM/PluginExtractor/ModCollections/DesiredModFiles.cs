@@ -3,22 +3,20 @@
     public class DesiredModFiles : IDesiredModFiles
     {
         readonly IMod mod;
-        readonly List<string> includedFiles;
-        readonly List<string> excludedFiles;
+        public List<string> IncludedFiles { get; } = new();
+        public List<string> ExcludedFiles { get; } = new();
 
-        public DesiredModFiles(IMod mod, List<string> includedFiles, List<string> excludedFiles)
+        public DesiredModFiles(IMod mod)
         {
             this.mod = mod;
-            this.includedFiles = includedFiles;
-            this.excludedFiles = excludedFiles;
         }
 
         public void Apply()
         {
-            foreach (string file in includedFiles)
+            foreach (string file in IncludedFiles)
                 mod.EnableFile(file);
 
-            foreach (string file in excludedFiles)
+            foreach (string file in ExcludedFiles)
                 mod.DisableFile(file);
         }
     }

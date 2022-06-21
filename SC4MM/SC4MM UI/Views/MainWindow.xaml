@@ -17,9 +17,10 @@
                 />
         </StackPanel>
 
-        <StackPanel Orientation="Vertical" Margin="5">
-            <views:ModDetails x:Name="ModDetailsView"/>
-        </StackPanel>
-        
+        <views:ModDetails x:Name="ModDetailsView"/>
+
+        <views:ModList x:Name="ModListsView"/>
+
+
     </StackPanel>
 </Window>

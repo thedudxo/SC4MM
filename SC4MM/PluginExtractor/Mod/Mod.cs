@@ -5,14 +5,14 @@ namespace SC4MM
     public class Mod : IMod
     {
         readonly IFileMover fileMover;
-        public readonly ModFolders folders;
+        public ModFolders Folders { get; }
         public Dictionary<string, bool> ToggleByFileName { get; } = new();
-        public List<string> Readme { get; init; } = new();
+        public List<string> Readmes { get; init; } = new();
         public string Name { get; set; }
 
         public Mod(ModFolders folders, IFileMover fileMover)
         {
-            this.folders = folders;
+            this.Folders = folders;
             this.fileMover = fileMover;
         }
 
@@ -22,7 +22,7 @@ namespace SC4MM
         {
             if (Enabled) return;
 
-            MoveEnabledFiles(folders.Enabled);
+            MoveEnabledFiles(Folders.Enabled);
 
             Enabled = true;
         }
@@ -32,7 +32,7 @@ namespace SC4MM
         {
             if (Enabled == false) return;
 
-            MoveEnabledFiles(folders.Disabled);
+            MoveEnabledFiles(Folders.Disabled);
 
             Enabled = false;
         }
@@ -45,7 +45,7 @@ namespace SC4MM
 
             if (Enabled)
             {
-                MoveFile(filename, folders.Enabled, folders.Disabled);
+                MoveFile(filename, Folders.Enabled, Folders.Disabled);
             }
         }
 
@@ -57,7 +57,7 @@ namespace SC4MM
 
             if (Enabled)
             {
-                MoveFile(filename, folders.Disabled, folders.Enabled);
+                MoveFile(filename, Folders.Disabled, Folders.Enabled);
             }
         }
 
@@ -66,7 +66,7 @@ namespace SC4MM
             foreach (var item in ToggleByFileName)
             {
                 if(item.Value == true)
-                    MoveFile(item.Key, folders.Enabled, destination);
+                    MoveFile(item.Key, Folders.Enabled, destination);
             }
         }
 

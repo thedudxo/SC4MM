@@ -2,8 +2,8 @@
 {
     public class ModList : IModList
     {
-        readonly HashSet<IModList> SubLists = new();
-        readonly HashSet<IModAndDesiredFiles> ChildMods = new();
+        public readonly HashSet<IModAndDesiredFiles> ChildMods = new();
+        public HashSet<IModList> SubLists { get; } = new();
         public HashSet<IModAndDesiredFiles> Mods { get;} = new();
         public HashSet<IModList> Parents { get; } = new();
 

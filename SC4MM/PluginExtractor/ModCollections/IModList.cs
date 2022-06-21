@@ -2,6 +2,8 @@
 {
     public interface IModList
     {
+
+        HashSet<IModList> SubLists { get; }
         HashSet<IModAndDesiredFiles> Mods { get; }
         HashSet<IModList> Parents { get;}
         bool Contains(IModAndDesiredFiles mod);
