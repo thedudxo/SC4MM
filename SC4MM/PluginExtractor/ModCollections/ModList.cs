@@ -7,6 +7,8 @@
         public HashSet<IModAndDesiredFiles> Mods { get;} = new();
         public HashSet<IModList> Parents { get; } = new();
 
+        public string Name { get; set; }
+
         public void AddSublist(IModList sublist)
         {
             if (Contains(sublist))

@@ -16,21 +16,20 @@
         <DataTemplate x:Key="ModItem">
             <Label Content="{Binding Mod.Name}"/>
         </DataTemplate>
+        <DataTemplate x:Key="SublistItem">
+            <Label Content="{Binding Name}"/>
+        </DataTemplate>
     </UserControl.Resources>
     
     <StackPanel Background="Snow" Orientation="Vertical">
         
-        <Label Content="ListName" FontSize="15"/>
+        <Label Content="{Binding Name}" FontSize="15"/>
         
+        <Label Content="Mods:"/>
         <ListBox x:Name="Mods" ItemsSource="{Binding Mods}" ItemTemplate="{StaticResource ResourceKey=ModItem}"/>
-        
-        <ListBox x:Name="SublistsBox" ItemsSource="{Binding SubLists}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <local:ModList/>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        
+
+        <Label Content="Sublists:"/>
+        <ListBox x:Name="Sublists" ItemsSource="{Binding SubLists}" ItemTemplate="{StaticResource ResourceKey=SublistItem}"/>
+
     </StackPanel>
 </UserControl>

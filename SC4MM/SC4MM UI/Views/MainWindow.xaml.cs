@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Collections.ObjectModel;
 
 namespace SC4MM_UI
 {
@@ -12,10 +13,11 @@ namespace SC4MM_UI
         ModList modlist = new();
         public Viewmodels.Mod SelectedMod { get; set; }
 
+        readonly ObservableCollection<Viewmodels.ModList> openedModlistTabs = new();
         public MainWindow()
         {
             InitializeComponent();
-
+            #region other stuff
             Viewmodels.Mod mod1 = CreateTestmod1();
             CreateTestmod2();
             CreateTestSublist();
@@ -25,12 +27,20 @@ namespace SC4MM_UI
             ModDetailsView.DataContext = SelectedMod;
             ModsList.ItemsSource = Mods;
 
-            ModListsView.DataContext = new Viewmodels.ModList(modlist);
+            modlist.Name = "Default";
+#endregion
+
+            var modlistVM = new Viewmodels.ModList(modlist);
+            TestModlistView.DataContext = modlistVM;
+
+            openedModlistTabs.Add(modlistVM);
+            ModListsTabs.ItemsSource = openedModlistTabs;
         }
 
         void CreateTestSublist()
         {
             ModList sublist = new();
+            sublist.Name = "ShantyTown";
             modlist.AddSublist(sublist);
 
             var mod = new Mod(
@@ -53,6 +63,7 @@ namespace SC4MM_UI
             var mdf = new ModAndDesiredFiles(mod, df);
 
             sublist.Add(mdf);
+            openedModlistTabs.Add(new Viewmodels.ModList(sublist));
         }
 
         private void CreateTestmod2()

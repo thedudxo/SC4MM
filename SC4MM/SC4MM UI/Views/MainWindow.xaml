@@ -16,11 +16,23 @@
                 ItemTemplate="{StaticResource Mod}" SelectionChanged="ModsList_SelectionChanged"
                 />
         </StackPanel>
-
+        
         <views:ModDetails x:Name="ModDetailsView"/>
 
-        <views:ModList x:Name="ModListsView"/>
+        <TabControl x:Name="ModListsTabs">
+            <TabControl.ItemTemplate>
+                <DataTemplate>
+                    <Label Content="{Binding Name}"/>
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+            <TabControl.ContentTemplate>
+                <DataTemplate>
+                    <views:ModList DataContext="{Binding}"/>
+                </DataTemplate>
+            </TabControl.ContentTemplate>
+        </TabControl>
 
+        <views:ModList x:Name="TestModlistView"/>
 
     </StackPanel>
 </Window>

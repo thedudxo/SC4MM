@@ -2,7 +2,7 @@
 {
     public interface IModList
     {
-
+        string Name { get; set; }
         HashSet<IModList> SubLists { get; }
         HashSet<IModAndDesiredFiles> Mods { get; }
         HashSet<IModList> Parents { get;}
