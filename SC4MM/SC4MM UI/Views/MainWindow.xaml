@@ -27,12 +27,9 @@
             </TabControl.ItemTemplate>
             <TabControl.ContentTemplate>
                 <DataTemplate>
-                    <views:ModList DataContext="{Binding}"/>
+                    <views:ModList/>
                 </DataTemplate>
             </TabControl.ContentTemplate>
         </TabControl>
-
-        <views:ModList x:Name="TestModlistView"/>
-
     </StackPanel>
 </Window>

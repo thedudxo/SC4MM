@@ -31,7 +31,6 @@ namespace SC4MM_UI
 #endregion
 
             var modlistVM = new Viewmodels.ModList(modlist);
-            TestModlistView.DataContext = modlistVM;
 
             openedModlistTabs.Add(modlistVM);
             ModListsTabs.ItemsSource = openedModlistTabs;
