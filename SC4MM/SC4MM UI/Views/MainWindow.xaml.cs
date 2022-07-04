@@ -32,18 +32,20 @@ namespace SC4MM_UI
             var modlistVM = new Viewmodels.ModList(modlist);
 
             openedModlistTabs.Add(modlistVM);
-            foreach(var list in modlistVM.SubLists)
-            {
-                openedModlistTabs.Add(list);
-            }
 
             ModListsTabs.ItemsSource = openedModlistTabs;
         }
 
         void SublistSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(e.AddedItems.Count > 0)
-                Dispatcher.BeginInvoke((Action)(() => ModListsTabs.SelectedItem = e.AddedItems[0]));
+            if (e.AddedItems.Count <= 0) return;
+
+            if (e.AddedItems[0] is not Viewmodels.ModList selectedItem) return;
+
+            if (openedModlistTabs.Contains(selectedItem) == false)
+                openedModlistTabs.Add(selectedItem);
+
+            ModListsTabs.SelectedItem = selectedItem;
         }
 
         void CreateTestSublist()
