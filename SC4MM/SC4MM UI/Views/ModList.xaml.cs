@@ -20,9 +20,27 @@ namespace SC4MM_UI.Views
     /// </summary>
     public partial class ModList : UserControl
     {
+        public Action<object, SelectionChangedEventArgs> OnSublistsSelectionChanged
+        {
+            get { return (Action<object, SelectionChangedEventArgs>)GetValue(OnSublistsSelectionChangedProperty); }
+            set { SetValue(OnSublistsSelectionChangedProperty, value); }
+        }
+
+        public static readonly DependencyProperty OnSublistsSelectionChangedProperty =
+            DependencyProperty.Register("OnSublistsSelectionChanged", 
+                typeof(Action<object, SelectionChangedEventArgs>),
+                typeof(ModList));
+
+
+
         public ModList()
         {
             InitializeComponent();
+        }
+
+        private void Sublists_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            OnSublistsSelectionChanged(sender, e);
         }
     }
 }

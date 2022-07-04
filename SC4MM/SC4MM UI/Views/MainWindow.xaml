@@ -27,7 +27,7 @@
             </TabControl.ItemTemplate>
             <TabControl.ContentTemplate>
                 <DataTemplate>
-                    <views:ModList/>
+                    <views:ModList  OnSublistsSelectionChanged="SublistSelectionChanged"/>
                 </DataTemplate>
             </TabControl.ContentTemplate>
         </TabControl>

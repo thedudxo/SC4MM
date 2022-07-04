@@ -17,7 +17,7 @@ namespace SC4MM_UI
         public MainWindow()
         {
             InitializeComponent();
-            #region other stuff
+
             Viewmodels.Mod mod1 = CreateTestmod1();
             CreateTestmod2();
             CreateTestSublist();
@@ -28,12 +28,22 @@ namespace SC4MM_UI
             ModsList.ItemsSource = Mods;
 
             modlist.Name = "Default";
-#endregion
 
             var modlistVM = new Viewmodels.ModList(modlist);
 
             openedModlistTabs.Add(modlistVM);
+            foreach(var list in modlistVM.SubLists)
+            {
+                openedModlistTabs.Add(list);
+            }
+
             ModListsTabs.ItemsSource = openedModlistTabs;
+        }
+
+        void SublistSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(e.AddedItems.Count > 0)
+                Dispatcher.BeginInvoke((Action)(() => ModListsTabs.SelectedItem = e.AddedItems[0]));
         }
 
         void CreateTestSublist()
@@ -62,7 +72,6 @@ namespace SC4MM_UI
             var mdf = new ModAndDesiredFiles(mod, df);
 
             sublist.Add(mdf);
-            openedModlistTabs.Add(new Viewmodels.ModList(sublist));
         }
 
         private void CreateTestmod2()

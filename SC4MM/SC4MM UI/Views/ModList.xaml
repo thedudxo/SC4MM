@@ -24,10 +24,17 @@
         <Label Content="{Binding Name}" FontSize="15"/>
         
         <Label Content="Mods:"/>
-        <ListBox x:Name="Mods" ItemsSource="{Binding Mods}" ItemTemplate="{StaticResource ResourceKey=ModItem}"/>
+        <ListBox x:Name="Mods" 
+                 ItemsSource="{Binding Mods}" 
+                 ItemTemplate="{StaticResource ResourceKey=ModItem}"
+                 />
 
         <Label Content="Sublists:"/>
-        <ListBox x:Name="Sublists" ItemsSource="{Binding SubLists}" ItemTemplate="{StaticResource ResourceKey=SublistItem}"/>
+        <ListBox x:Name="Sublists" 
+                 ItemsSource="{Binding SubLists}" 
+                 ItemTemplate="{StaticResource ResourceKey=SublistItem}" 
+                 SelectionChanged="Sublists_SelectionChanged"
+                 />
 
     </StackPanel>
 </UserControl>
