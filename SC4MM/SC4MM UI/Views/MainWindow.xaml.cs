@@ -11,7 +11,17 @@ namespace SC4MM_UI
     {
         readonly List<Viewmodels.Mod> Mods = new();
         ModList modlist = new();
-        public Viewmodels.Mod SelectedMod { get; set; }
+
+        public Viewmodels.Mod SelectedMod
+        {
+            get { return (Viewmodels.Mod)GetValue(SelectedModProperty); }
+            set { SetValue(SelectedModProperty, value); }
+        }
+
+        public static readonly DependencyProperty SelectedModProperty =
+            DependencyProperty.Register("SelectedMod", typeof(Viewmodels.Mod), typeof(MainWindow));
+
+
 
         readonly ObservableCollection<Viewmodels.ModList> openedModlistTabs = new();
         public MainWindow()
@@ -24,7 +34,7 @@ namespace SC4MM_UI
 
             SelectedMod = mod1;
 
-            ModDetailsView.DataContext = SelectedMod;
+            //ModDetailsView.DataContext = SelectedMod;
             ModsList.ItemsSource = Mods;
 
             modlist.Name = "Default";

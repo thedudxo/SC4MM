@@ -42,5 +42,12 @@ namespace SC4MM_UI.Views
         {
             OnSublistsSelectionChanged(sender, e);
         }
+
+        private void Mods_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (DataContext is not Viewmodels.ModList list) return;
+            if (e.AddedItems.Count > 0)
+                list.SelectedMod = e.AddedItems[0] as Viewmodels.ModAndDesiredFiles;
+        }
     }
 }

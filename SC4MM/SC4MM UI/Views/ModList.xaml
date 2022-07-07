@@ -21,12 +21,10 @@
     
     <StackPanel Background="Snow" Orientation="Vertical">
         
-        <Label Content="{Binding Name}" FontSize="15"/>
-        
         <Label Content="Mods:"/>
         <ListBox x:Name="Mods" 
                  ItemsSource="{Binding Mods}" 
-                 ItemTemplate="{StaticResource ResourceKey=ModItem}"
+                 ItemTemplate="{StaticResource ResourceKey=ModItem}" SelectionChanged="Mods_SelectionChanged"
                  />
 
         <Label Content="Sublists:"/>

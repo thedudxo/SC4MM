@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SC4MM_UI"
         xmlns:views="clr-namespace:SC4MM_UI.Views"
+        xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
 
@@ -17,7 +18,6 @@
                 />
         </StackPanel>
         
-        <views:ModDetails x:Name="ModDetailsView"/>
 
         <TabControl x:Name="ModListsTabs">
             <TabControl.ItemTemplate>
@@ -27,9 +27,13 @@
             </TabControl.ItemTemplate>
             <TabControl.ContentTemplate>
                 <DataTemplate>
-                    <views:ModList  OnSublistsSelectionChanged="SublistSelectionChanged"/>
+                    <views:ModList OnSublistsSelectionChanged="SublistSelectionChanged"/>
                 </DataTemplate>
             </TabControl.ContentTemplate>
         </TabControl>
+        
+        <views:ModDetails x:Name="ModDetailsView"
+                          DataContext="{Binding ElementName=ModListsTabs, Path=SelectedItem.SelectedMod.Mod}"
+                          />
     </StackPanel>
 </Window>
