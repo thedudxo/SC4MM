@@ -20,12 +20,32 @@ namespace SC4MM_UI.Views
     /// </summary>
     public partial class ModDetails : UserControl
     {
-        public Mod? mod { get; set; }
+        //public Mod? mod { get; set; }
+
+
+
+        public Viewmodels.ModList ModList
+        {
+            get { return (Viewmodels.ModList)GetValue(ModListProperty); }
+            set { SetValue(ModListProperty, value); }
+        }
+
+        public static readonly DependencyProperty ModListProperty =
+            DependencyProperty.Register("ModList", typeof(Viewmodels.ModList), typeof(ModDetails), new PropertyMetadata(null));
+
+
+
 
         public ModDetails()
         {
             InitializeComponent();
-            //DataContext = mod;
+        }
+
+        private void RemoveFromList_Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (DataContext is not Viewmodels.ModAndDesiredFiles) return;
+            var mod = (Viewmodels.ModAndDesiredFiles)DataContext;
+
         }
     }
 }

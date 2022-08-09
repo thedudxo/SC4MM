@@ -8,13 +8,5 @@
         <DataTemplate x:Key="Mod">
             <Label Content="{Binding Name}"/>
         </DataTemplate>
-
-        <DataTemplate x:Key="ModFile">
-            <StackPanel Orientation="Horizontal">
-                <CheckBox IsChecked="{Binding Path = Value, Mode=OneWay}"/>
-                <Label Content="{Binding Key}" />
-            </StackPanel>
-        </DataTemplate>
-        
     </Application.Resources>
 </Application>

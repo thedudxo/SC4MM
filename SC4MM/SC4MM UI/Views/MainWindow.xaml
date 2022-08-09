@@ -12,28 +12,31 @@
     <StackPanel Orientation="Horizontal" Margin="10">
         
         <StackPanel Orientation="Vertical" Margin="5">
-            <Label Content="All Mods" />
+            <Label Content="All Mods" FontSize="20"/>
             <ListBox x:Name="ModsList"
                 ItemTemplate="{StaticResource Mod}" SelectionChanged="ModsList_SelectionChanged"
                 />
         </StackPanel>
-        
 
-        <TabControl x:Name="ModListsTabs">
-            <TabControl.ItemTemplate>
-                <DataTemplate>
-                    <Label Content="{Binding Name}"/>
-                </DataTemplate>
-            </TabControl.ItemTemplate>
-            <TabControl.ContentTemplate>
-                <DataTemplate>
-                    <views:ModList OnSublistsSelectionChanged="SublistSelectionChanged"/>
-                </DataTemplate>
-            </TabControl.ContentTemplate>
-        </TabControl>
-        
+        <StackPanel Margin="20,0,20,0" MinWidth="200">
+            <Label Content="Mod Lists" FontSize="20"/>
+            <TabControl x:Name="ModListsTabs">
+                <TabControl.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding Name}"/>
+                    </DataTemplate>
+                </TabControl.ItemTemplate>
+                <TabControl.ContentTemplate>
+                    <DataTemplate>
+                        <views:ModList OnSublistsSelectionChanged="SublistSelectionChanged"/>
+                    </DataTemplate>
+                </TabControl.ContentTemplate>
+            </TabControl>
+        </StackPanel>
+
         <views:ModDetails x:Name="ModDetailsView"
-                          DataContext="{Binding ElementName=ModListsTabs, Path=SelectedItem.SelectedMod.Mod}"
+                          DataContext="{Binding ElementName=ModListsTabs, Path=SelectedItem.SelectedMod}"
+                          ModList ="{Binding ElementName=ModListsTabs, Path=SelectedItem}"
                           />
     </StackPanel>
 </Window>

@@ -1,6 +1,6 @@
 ﻿namespace SC4MM_UI.Viewmodels
 {
-    internal class ModList : ObservableObject
+    public class ModList : ObservableObject
     {
         public IModList? Model { get; set; }
         public List<ModAndDesiredFiles> Mods { get; set; } = new();

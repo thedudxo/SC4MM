@@ -5,7 +5,16 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SC4MM_UI.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="250">
+
+    <UserControl.Resources>
+        <DataTemplate x:Key="ModFile">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="{Binding}" />
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
+
     <StackPanel Orientation="Vertical" Background="Snow">
         <Label Content="Mod Details" FontSize="20"/>
 
@@ -18,29 +27,46 @@
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
+                <RowDefinition Height="20"/>
+                <RowDefinition/>
+                <RowDefinition />
+                <RowDefinition Height="20"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition Height="20"/>
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            
+
             <Label Grid.Row="0" Grid.Column="0" Content="Name:"/>
-            <Label Grid.Row="0" Grid.Column="1" Content="{Binding Name}"/>
+            <Label Grid.Row="0" Grid.Column="1" Content="{Binding Mod.Name}"/>
 
-            <Label Grid.Row="1" Grid.Column="0" Content="Enabled Path:"/>
-            <Label Grid.Row="1" Grid.Column="1" Content="{Binding Folders.Enabled}"/>
-            
-            <Label Grid.Row="2" Grid.Column="0" Content="Disabled Path:"/>
-            <Label Grid.Row="2" Grid.Column="1" Content="{Binding Folders.Disabled}"/>
+            <Label Grid.Row="1" Grid.Column="0" Content="Mod List:"/>
 
-            <ListBox Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" 
-                     ItemTemplate="{StaticResource ModFile}" ItemsSource="{Binding ToggleByFileName}"
-                     x:Name="Files"/>
+            <Label Grid.Row="1" Grid.Column="1" Content="Name Here"/>
 
-            <Label Grid.Row="4" Grid.Column="0" Content="Readme Path:"/>
-            <Label Grid.Row="4" Grid.Column="1" Content="{Binding Folders.Readme}"/>
+            <Button Grid.Row="2" Grid.Column="1" x:Name="RemoveFromList_Button" Content="Remove From" 
+                        Click="RemoveFromList_Button_Click"/>
 
-            <ListBox Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" 
-                     ItemsSource="{Binding Readmes}"
+            <Label Grid.Row="4" Grid.Column="0" Content="Enabled Files:"/>
+            <Button Grid.Row="4" Grid.Column="1" Content="Disable Selected"/>
+
+            <ListBox Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" SelectionMode="Multiple" 
+                     ItemTemplate="{StaticResource ModFile}" ItemsSource="{Binding DesiredFiles.IncludedFiles}"
+                     x:Name="EnabledFiles"/>
+
+            <Label Grid.Row="7" Grid.Column="0" Content="Disabled Files:"/>
+            <Button Grid.Row="7" Grid.Column="1" Content="Enable Selected"/>
+
+            <ListBox Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2"  SelectionMode="Multiple"
+                     ItemTemplate="{StaticResource ModFile}" ItemsSource="{Binding DesiredFiles.ExcludedFiles}"
+                     x:Name="DisabledFiles"/>
+
+            <Label Grid.Row="10" Grid.Column="0" Content="Readme Files:"/>
+
+            <ListBox Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="2" 
+                     ItemsSource="{Binding Mod.Readmes}"
                      x:Name="Readmes"/>
         </Grid>
 

@@ -1,6 +1,6 @@
 ﻿namespace SC4MM_UI.Viewmodels
 {
-    internal class ModAndDesiredFiles : IModAndDesiredFiles
+    public class ModAndDesiredFiles : IModAndDesiredFiles
     {
         public IMod? Mod { get; set; }
         public IDesiredModFiles? DesiredFiles { get; set; }
